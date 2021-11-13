@@ -11,7 +11,7 @@ GPIO.setup(26, GPIO.OUT) #Digital Output #4
 GPIO.setup(19, GPIO.OUT) #Digital Output #5
 GPIO.setup(13, GPIO.OUT) #Digital Output #6
 
-adc0 = MCP3208(channel = 0)
+adc0 = MCP3208(channel = 0) #Analog input #0
 
 while True:
 	if adc0.value > 0.3: #watering threshold
