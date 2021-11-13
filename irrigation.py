@@ -24,7 +24,7 @@ while True:
 		print('watered')
 		sleep(2)
 	else:
-		print('watered')
+		print('soil saturated')
 		sleep(2)
 		moisture = adc0.value
 		print(moisture)
