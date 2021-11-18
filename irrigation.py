@@ -13,18 +13,26 @@ GPIO.setup(13, GPIO.OUT) #Digital Output #6
 
 adc0 = MCP3208(channel = 0) #Analog input #0
 
-while True:
-	if adc0.value > 0.3: #watering threshold
-		moisture = adc0.value
-		print(moisture)
-		print('watering')
-		GPIO.output(16, True) #turn pump on
-		sleep(2) #water length
-		GPIO.output(16, False) #turn pump off
-		print('watered')
-		sleep(2)
-	else:
-		print('soil saturated')
-		sleep(2)
-		moisture = adc0.value
-		print(moisture)
+def main():
+	try:
+		while True:
+			if adc0.value > 0.3: #watering threshold
+				moisture = adc0.value
+				print(moisture)
+				print('watering')
+				GPIO.output(16, True) #turn pump on
+				sleep(2) #water length
+				GPIO.output(16, False) #turn pump off
+				print('watered')
+				sleep(2)
+			else:
+				print('soil saturated')
+				sleep(2)
+				moisture = adc0.value
+				print(moisture)
+
+	except KeyboardInterrupt: # If CTRL+C, exit cleanly:
+		GPIO.cleanup() # cleanup GPIOs
+		
+if __name__ == "__main__":
+    main()
